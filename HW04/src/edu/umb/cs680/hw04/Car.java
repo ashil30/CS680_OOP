@@ -17,6 +17,11 @@ public class Car {
         this.price = price;
     }
 
+    public Car(String make, String model, int year) {
+        this.year = year;
+        this.model = model;
+        this.make = make;
+    }
     public String getMake() {
         return make;
     }

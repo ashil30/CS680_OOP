@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class SingletonClassTest {
+public class SingletonTest {
     @Test
     public void toCheckWhetherTheInstanceIsSame(){
         SingletonClass instance1 = SingletonClass.getInstance();
@@ -13,4 +13,5 @@ public class SingletonClassTest {
         Assertions.assertNotNull(instance2);
         Assertions.assertSame(instance1, instance2);
     }
+
 }
