@@ -27,5 +27,13 @@ public class SecurityContext {
     public State getState(){
         return this.state;
     }
-
+    public static void main(String[] args){
+        String user = "aabb";
+        String pwd = "asdfgh";
+        SecurityContext ctx = new SecurityContext(user);
+        ctx.login(pwd);
+        System.out.println(ctx.getState() instanceof LoggedIn);
+        ctx.logout();
+        System.out.println(ctx.getState() instanceof LoggedIn);
+    }
 }
