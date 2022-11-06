@@ -1,4 +1,4 @@
-package edu.umb.cs680.hw05;
+package edu.umb.cs680.hw06;
 
 public class SecurityContext {
 
@@ -27,13 +27,5 @@ public class SecurityContext {
     public State getState(){
         return this.state;
     }
-    public static void main(String[] args){
-        String user = "aabb";
-        String pwd = "asdfgh";
-        SecurityContext ctx = new SecurityContext(user);
-        ctx.login(pwd);
-        System.out.println(ctx.getState() instanceof LoggedIn);
-        ctx.logout();
-        System.out.println(ctx.getState() instanceof LoggedOut);
-    }
+
 }
