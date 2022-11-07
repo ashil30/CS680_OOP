@@ -1,6 +1,7 @@
 package edu.umb.cs680.hw06;
-import ModelXYZ.*;
-import ModelABC.*;
+
+import edu.umb.cs680.hw06.ModelXYZ.*;
+import edu.umb.cs680.hw06.ModelABC.*;
 
 public class PrintJob {
     public static void main(String[] args){

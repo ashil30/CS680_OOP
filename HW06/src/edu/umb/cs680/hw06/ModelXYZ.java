@@ -3,18 +3,18 @@ package edu.umb.cs680.hw06;
 public class ModelXYZ extends PrintJobExecutor {
 
     @Override
-    void doAuthentication(){};
+    public void doAuthentication(){};
 
     @Override
-    void doAccessControl() {};
+    public void doAccessControl() {};
 
     @Override
-    void doPrint(){
+    public void doPrint(){
         System.out.println("Printing");
     }
 
     @Override
-    void doErrorHandling();
+    public void doErrorHandling(){};
 
 
 }

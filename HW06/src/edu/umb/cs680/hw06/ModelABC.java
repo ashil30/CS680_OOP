@@ -3,7 +3,7 @@ package edu.umb.cs680.hw06;
 public class ModelABC extends PrintJobExecutor {
 
     @Override
-    void doAuthentication(String pwd, SecurityContext ctx){
+    public void doAuthentication(String pwd, SecurityContext ctx){
         ctx.login(pwd);
         if(!(ctx.getState() instanceof LoggedIn)){
             doErrorHandling();
@@ -11,17 +11,17 @@ public class ModelABC extends PrintJobExecutor {
     };
 
     @Override
-    void doAccessControl() {};
+    public void doAccessControl() {};
 
     @Override
-    void doPrint(){
+    public void doPrint(){
         if(ctx.getState() instanceof LoggedIn) {
             System.out.println("Printing");
         }
     }
 
     @Override
-    void doErrorHandling(){
+    public void doErrorHandling(){
         throw new Exception("Error occured");
     };
 
