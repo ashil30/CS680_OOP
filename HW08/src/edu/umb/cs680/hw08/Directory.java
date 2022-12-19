@@ -3,70 +3,76 @@ package edu.umb.cs680.hw08;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 
-
 public class Directory extends FSElement{
-	private final LinkedList<FSElement> children = new LinkedList<>();
-	
+	private LinkedList<FSElement> children;
+	private LinkedList<Directory> directory;
+	private LinkedList<File> file;
+
 	public Directory(Directory parent, String name, int size, LocalDateTime creationTime) {
 		super(parent, name, size, creationTime);
-	}
-	
-	public boolean isDirectory() {
-		return true;
+		children = new LinkedList<>();
+
+		if (parent != null) {
+			parent.appendChild(this);
+		}
 	}
 
-	public boolean isFile() {
-		return false;
-	}
-
-	public boolean isLink() {
-		return false;
-	}
-	
-	public LinkedList<FSElement> getChildren(){
+	public LinkedList<FSElement> getChildren() {
 		return this.children;
 	}
-	
+
 	public void appendChild(FSElement child) {
 		this.children.add(child);
-		child.setParent(this);
 	}
-	
+
 	public int countChildren() {
-		return this.children.size();
+		int count=0;
+		for(FSElement f: this.children) {
+			count+=1;
+		}
+		return count;
 	}
-	
-	public LinkedList<Directory> getSubDirectories() {
-		LinkedList<Directory> directory = new LinkedList<>();
-		for (FSElement fsElem : children) {
-			if (fsElem.isDirectory())
-				dirList.add((Directory)fsElem);
+
+	public LinkedList<Directory> getSubDirectory(){
+		for(FSElement s: getChildren()) {
+			if(s instanceof Directory) {
+				directory.add((Directory) s);
 			}
 		}
 		return directory;
 	}
-	
+
 	public LinkedList<File> getFiles(){
-		LinkedList<File> files = new LinkedList<>();
-		for (FSElement fsElem : children) {
-			if (!fsElem.isDirectory()) {
-				files.add((File)fsElem);
+		for(FSElement s: getChildren()) {
+			if(s instanceof File) {
+				file.add((File) s);
 			}
 		}
-		return files;
+		return file;
 	}
-	
+
 	public int getTotalSize() {
-		int totalSize = 0;
-		for (FSElement fsElem : children) {
-			if (fsElem.isDirectory()) {
-				totalSize += (Directory)fsElem.getTotalSize();
+		int totalSize=0;
+		for(FSElement f: getChildren()) {
+			if(f instanceof Directory) {
+				totalSize+= ((Directory)f).getTotalSize();
 			}
 			else {
-				totalSize += fsElem.getSize();
+				totalSize+= f.getSize();
 			}
 		}
 		return totalSize;
+	}
+
+
+
+	@Override
+	public boolean isDirectory() {
+		// TODO Auto-generated method stub
+		if(this instanceof Directory) {
+			return true;
+		}
+		return false;
 	}
 
 }

@@ -1,73 +1,61 @@
 package edu.umb.cs680.hw08;
 
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import edu.umb.cs680.hw08.Directory;
-import edu.umb.cs680.hw08.File;
-import edu.umb.cs680.hw08.Link;
-
-public class LinkTest {
-
-
+class LinkTest {
 
 	static LocalDateTime localTime = LocalDateTime.now();
 
-	Directory root = new Directory(null, "root", 0, localTime);  // directory has size 0
 
-	Directory bin = new Directory(root, "bin", 0, localTime);
-	File y = new File(bin, "y", 30, localTime);
+	Directory root = new Directory(null,"root",0, localTime);
+	Directory applications = new Directory(root,"applications",0, localTime);
+	Directory home = new Directory(root,"home",0, localTime);
+	Directory code = new Directory(home,"code",0, localTime);
+	Directory pics = new Directory(home,"pics",0, localTime);
 
-	Directory home = new Directory(root, "home", 0, localTime);
+	File a = new File(applications,"a",1,localTime);
+	File b = new File(home,"b",1,localTime);
+	File c = new File(code,"c",1,localTime);
+	File d = new File(code,"d",1,localTime);
+	File e = new File(pics,"e",1,localTime);
+	File f = new File(pics,"f",1,localTime);
 
-	Directory pictures = new Directory(home, "pictures", 0, localTime);
-	File a = new File(pictures, "a", 30, localTime);
-	File b = new File(pictures, "b", 30, localTime);
-	File c = new File(home, "c", 15, localTime);
-	Link m = new Link(home, "m", 0, localTime, bin);
-	
-	private String[] linkToStringArray(Link l) {
-		String[] linkInfo = { String.valueOf(l.isLink()), l.getName(), String.valueOf(l.getSize()),
-				String.valueOf(l.getCreationTime()), l.getParent().getName(), l.getTarget().getName() };
+	Link x = new Link(home, "x", 0, localTime, applications);
+	Link y = new Link(code, "y", 0, localTime, a);
+
+	private String[] LinkToStringArray(Link l) {
+		Optional<Directory> optionalDirectory = Optional.ofNullable(l.getParent());
+		String[] linkInfo = {Boolean.toString(l.isDirectory()), l.getName(), Integer.toString(l.getSize()), l.getCreationTime().toString(), l.getTarget().getName()};
 		return linkInfo;
 	}
 
 	@Test
-	public void verifyLinkEquality() {
-		String[] expected = { "true", "m", "0", String.valueOf(m.getCreationTime()), "home", "bin" };
-		Link actual = m;
-		assertArrayEquals(expected, linkToStringArray(actual));
+	public void verifyLinksTest() {
+		assertFalse(x.isDirectory());
+		assertFalse(y.isDirectory());
 	}
 
 	@Test
-	public void isDirectory() {
-		assertFalse(m.isDirectory());
+	public void verifyTargetEqualityY() {
+		String[] expected={"false","y","0",localTime.toString(),"a"};
+		assertArrayEquals(expected,LinkToStringArray(y));
 	}
-	
+
 	@Test
-	public void isFile() {
-		assertFalse(m.isFile());
+	public void verifyTargetEqualityX() {
+		String[] expected={"false","x","0",localTime.toString(),"applications"};
+		assertArrayEquals(expected,LinkToStringArray(x));
 	}
-	
+
 	@Test
-	public void isLink() {
-		assertTrue(m.isLink());
-	}
-	
-	@Test
-	public void getTargetTesting() {
-		assertSame(bin, m.getTarget());
-	}
-	
-	@Test
-	public void setTargetTesting() {
-		m.setTarget(apps);
-		assertSame(apps, m.getTarget());
+	public void verifyParentOfTarget() {
+		assertSame("root", x.getTarget().getParent().getName());
+		assertSame("applications", y.getTarget().getParent().getName());
 	}
 
 }

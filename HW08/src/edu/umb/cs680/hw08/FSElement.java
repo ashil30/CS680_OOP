@@ -3,51 +3,33 @@ package edu.umb.cs680.hw08;
 import java.time.LocalDateTime;
 
 public abstract class FSElement {
-	protected Directory parent;
-	protected String name;
+	protected String pname;
 	protected int size;
 	protected LocalDateTime creationTime;
-	
-	public FSElement(Directory parent, String name, int size, LocalDateTime creationTime) {
+	protected Directory parent;
+
+	public FSElement(Directory parent, String name, int size, LocalDateTime creationTime){
 		this.parent = parent;
-		this.name = name;
+		this.pname = name;
 		this.size = size;
 		this.creationTime = creationTime;
 	}
 
-	public void setParent(Directory parent) {
-		this.parent = parent;
-	}
-	
 	public Directory getParent() {
-		return parent;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getName() {
-		return name;
+		return this.parent;
 	}
 
 	public int getSize() {
-		return size;
+		return this.size;
 	}
-	
+
 	public LocalDateTime getCreationTime() {
-		return creationTime;
-	}
-	
-	public abstract boolean isDirectory(){
-		//empty as mentioned in code
+		return this.creationTime;
 	}
 
-	public abstract boolean isFile();
-	public abstract boolean isLink();
-
-	public static void main(String[] args) {
-		System.out.println("FSElement Class");
+	public String getName() {
+		return this.pname;
 	}
-	
+
+	public abstract boolean isDirectory();
 }

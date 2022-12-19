@@ -9,15 +9,8 @@ public class File extends FSElement{
 		parent.appendChild(this);
 	}
 
+	@Override
 	public boolean isDirectory() {
-		return false;
-	}
-
-	public boolean isFile() {
-		return true;
-	}
-
-	public boolean isLink() {
 		return false;
 	}
 

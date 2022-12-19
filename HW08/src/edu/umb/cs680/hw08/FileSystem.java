@@ -1,30 +1,26 @@
 package edu.umb.cs680.hw08;
 
-
 import java.util.LinkedList;
 
 public class FileSystem {
 
-	private static FileSystem instance = null;
-	private LinkedList<Directory> rootDirs;
-	
-	private FileSystem() {
+	private FileSystem() {};
+	private static FileSystem fileSystem = null;
 
-		this.rootDirs = new LinkedList<>();
-	}
-	
 	public static FileSystem getFileSystem() {
-		if (instance == null) {
-			instance = new FileSystem();
+		if(fileSystem == null) {
+			fileSystem = new FileSystem();
 		}
-		return instance;
+		return fileSystem;
 	}
-	
-	public LinkedList<Directory> getRootDirs(){
-		return rootDirs;
+
+	LinkedList<Directory> directory =new LinkedList<Directory>();
+
+	public LinkedList<Directory> getRootDir(){
+		return this.directory;
 	}
-	
-	public void appendRootDir(Directory root) {
-		rootDirs.add(root);
+
+	public void addRootDir(Directory root) {
+		directory.add(root);
 	}
 }
