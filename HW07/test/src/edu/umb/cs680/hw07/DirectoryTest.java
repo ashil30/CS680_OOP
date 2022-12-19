@@ -1,86 +1,81 @@
 package edu.umb.cs680.hw07;
 
-import java.time.LocalDateTime;
-import java.util.LinkedList;
-
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeAll;
+import java.time.LocalDateTime;
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 
-import edu.umb.cs680.hw07.Directory;
-import edu.umb.cs680.hw07.File;
-
-public class DirectoryTest {
+class DirectoryTest {
 
 	static LocalDateTime localTime = LocalDateTime.now();
 
-	Directory root = new Directory(null, "root", 0, localTime);  // directory has size 0
 
-	Directory bin = new Directory(root, "bin", 0, localTime);
-	File y = new File(bin, "y", 100, localTime);
+	Directory root = new Directory(null,"root",0, localTime);
+	Directory applications = new Directory(root,"applications",0, localTime);
+	Directory home = new Directory(root,"home",0, localTime);
+	Directory code = new Directory(home,"code",0, localTime);
+	Directory pics = new Directory(home,"pics",0, localTime);
 
-	Directory home = new Directory(root, "home", 0, localTime);
+	File a = new File(applications,"a",1,localTime);
+	File b = new File(home,"b",1,localTime);
+	File c = new File(code,"c",1,localTime);
+	File d = new File(code,"d",1,localTime);
+	File e = new File(pics,"e",1,localTime);
+	File f = new File(pics,"f",1,localTime);
 
-	Directory pictures = new Directory(home, "pictures", 0, localTime);
-	File a = new File(pictures, "a", 100, localTime);
-	File b = new File(pictures, "b", 100, localTime);
-	File c = new File(home, "c", 45, localTime);
 
 	private String[] dirToStringArray(Directory d) {
-		String[] dirInfo = { String.valueOf(d.isDirectory()), d.getName(), String.valueOf(d.getTotalSize()),
-				String.valueOf(d.getCreationTime()), String.valueOf(d.countChildren()) };
+		Optional<Directory> optionalDirectory = Optional.ofNullable(d.getParent());
+		String[] dirInfo = {Boolean.toString(d.isDirectory()), d.getName(), Integer.toString(d.getSize()), d.getCreationTime().toString(), Integer.toString(d.countChildren()), Integer.toString(d.getTotalSize()), optionalDirectory.isPresent()?d.getParent().getName():null};
 		return dirInfo;
 	}
 
 	@Test
-	public void verifyDirectoryEquality() {
-		String[] expected = { "true", "root", "345", String.valueOf(root.getCreationTime()), "2" };
-		Directory actual = root;
-		assertArrayEquals(expected, dirToStringArray(actual));
-	}
-	
-	@Test
 	public void verifyDirectoryEqualityHome() {
-		String[] expected = { "true", "home", "245", String.valueOf(home.getCreationTime()), "1" };
-		Directory actual = home;
-		assertArrayEquals(expected, dirToStringArray(actual));
+		String[] expected={"true","home","0",localTime.toString(),"3","5","root"};
+		assertArrayEquals(expected,dirToStringArray(home));
 	}
-	
 	@Test
-	public void isDirectory() {
+	public void verifyDirectoryEqualityRoot() {
+		String expected[] = {"true", "root", "0", localTime.toString(), "2", "6",null};
+		assertArrayEquals(expected, dirToStringArray(root));
+	}
+	@Test
+	public void verifyDirectoryEqualityApplications() {
+		String expected[] = {"true", "applications", "0", localTime.toString(), "1", "1", "root"};
+		assertArrayEquals(expected, dirToStringArray(applications));
+	}
 
+	@Test
+	public void verifyDirectoryEqualityCode() {
+		String expected[] = {"true", "code", "0", localTime.toString(), "2", "2", "home"};
+		assertArrayEquals(expected, dirToStringArray(code));
+	}
+
+	@Test
+	public void verifyDirectoryEqualityPics() {
+		String expected[] = {"true", "pics", "0", localTime.toString(), "2", "2", "home"};
+		assertArrayEquals(expected, dirToStringArray(pics));
+	}
+
+	@Test
+	public void DirectoryFileTest() {
+		assertTrue(applications.isDirectory());
+		assertFalse(a.isDirectory());
 		assertTrue(root.isDirectory());
-	}
-	
-	@Test
-	public void appendChildren() {
-
-		assertSame(root, bin.getParent());
-	}
-	
-	@Test
-	public void countChildren() {
-		assertEquals(2, root.countChildren());;
-	}
-	
-	@Test
-	public void countChildrenTestingWithHome() {
-
-		assertSame(1, home.countChildren());
-	}
-	
-	@Test
-	public void getTotalSizeTesting() {
-
-		assertEquals(345, root.getTotalSize());
-	}
-	
-	@Test
-	public void getTotalSizeTestingWithHome() {
-
-		assertEquals(245, home.getTotalSize());
+		assertTrue(home.isDirectory());
+		assertTrue(code.isDirectory());
+		assertFalse(b.isDirectory());
 	}
 
+	@Test
+	public void subFilesAndFolderNumberTest() {
+		assertEquals(2,root.countChildren());
+		assertEquals(2,code.countChildren());
+		assertEquals(1,applications.countChildren());
+		assertEquals(3,home.countChildren());
+		assertEquals(2,pics.countChildren());
+	}
 }

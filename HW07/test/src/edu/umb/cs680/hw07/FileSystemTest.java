@@ -3,7 +3,6 @@ package edu.umb.cs680.hw07;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;

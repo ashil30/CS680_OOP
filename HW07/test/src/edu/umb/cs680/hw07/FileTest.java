@@ -1,6 +1,5 @@
 package edu.umb.cs680.hw07;
 
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDateTime;
@@ -16,7 +15,7 @@ public class FileTest {
 
 	Directory root = new Directory(null, "root", 0, localTime);
 
-	Directory prog = new Directory(root, "Prog", 0, localTime);
+	Directory prog = new Directory(root, "prog", 0, localTime);
 	File x = new File(prog, "x", 110, localTime);
 
 	Directory bin = new Directory(root, "bin", 0, localTime);
@@ -41,7 +40,7 @@ public class FileTest {
 	
 	@Test
 	public void verifyFileEqualityA() {
-		String[] expected = { "false", "c", "130", String.valueOf(a.getCreationTime()), "home" };
+		String[] expected = { "false", "c", "130", String.valueOf(c.getCreationTime()), "home" };
 		File actual = c;
 		assertArrayEquals(expected, fileToStringArray(actual));
 	}

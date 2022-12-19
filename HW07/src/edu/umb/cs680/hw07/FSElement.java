@@ -20,7 +20,7 @@ public abstract class FSElement {
 	}
 	
 	public Directory getParent() {
-		return parent;
+		return this.parent;
 	}
 
 	public void setName(String name) {
@@ -43,9 +43,7 @@ public abstract class FSElement {
 		return creationTime;
 	}
 	
-	public abstract boolean isDirectory(){
-
-	}
+	public abstract boolean isDirectory();
 
 	public static void main(String[] args) {
 
