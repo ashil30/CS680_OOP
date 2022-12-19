@@ -9,7 +9,7 @@ public class DJIAQuoteObservable extends Observable{
 	void changeQuote(float q) {
 		this.quote = q;
 		setChanged();
-		notifyObservers(new DJIAEvent(q));
+		notifyObservers(Double.valueOf(this.quote));
 	}
 	
 	public static void main(String[] args) {

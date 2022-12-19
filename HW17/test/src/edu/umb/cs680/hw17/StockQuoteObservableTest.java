@@ -1,4 +1,4 @@
-package edu.umb.cs680.hw13;
+package edu.umb.cs680.hw17;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -8,7 +8,7 @@ class StockQuoteObservableTest {
 
 	@Test
 	void checkDijaQuote() {
-		PiechartObserver PiechartObserver = new LinechartObserver();
+		LinechartObserver LinechartObserver = new LinechartObserver();
 		TableObserver TableObserver = new TableObserver();
 		ThreeDObserver THREEDObserver = new ThreeDObserver();
 

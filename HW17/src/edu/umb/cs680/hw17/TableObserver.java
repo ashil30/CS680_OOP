@@ -16,10 +16,7 @@ public class TableObserver implements Observer{
 			quote = ((StockEvent) o1).getQuote();
 			System.out.println("\n TableObserver Notified:\n Ticker: "+ticker+"\n Quote: "+quote+"\n");
 		}
-		else if(o instanceof DJIAQuoteObservable) {
-			quote = ((DJIAEvent) o1).getDija();
-			System.out.println("\n THREEDObserver Notified:\n Quote: "+quote+"\n");
-		}
+
 	}
 	
 	public static void main(String[] args) {

@@ -14,10 +14,7 @@ public class LinechartObserver implements Observer{
 			quote = ((StockEvent) o1).getQuote();
 			System.out.println("\n Sent to linechart notification: \n Ticker:" +ticker+"\n Quote: "+quote+"\n");
 		}
-		else if(o instanceof DJIAQuoteObservable) {
-			quote = ((DJIAEvent) o1).getDija();
-			System.out.println("\n Sent to 3d observer notififcation :\n Quote: "+quote+"\n");
-		}
+
 	}
 	
 	public static void main(String[] args) {
