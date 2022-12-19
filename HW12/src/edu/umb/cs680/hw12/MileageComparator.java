@@ -1,11 +1,12 @@
-package edu.umb.cs680.hw122;
+package edu.umb.cs680.hw12;
 
 import java.util.Comparator;
 
 public class MileageComparator implements Comparator<Car>{
-	
-	public int compare(Car carOne, Car carTwo) {
-		return carOne.getMileage() - carTwo.getMileage();
+
+	@Override
+	public int compare(Car o1, Car o2) {
+		return o2.getMileage()-o1.getMileage();
 	}
 
 }
