@@ -1,4 +1,4 @@
-package edu.umb.cs680.hw09;
+package edu.umb.cs680.HW09.fs;
 
 import java.time.LocalDateTime;
 
@@ -9,18 +9,12 @@ public class File extends FSElement{
 		parent.appendChild(this);
 	}
 
+	@Override
 	public boolean isDirectory() {
 		return false;
 	}
 
-	public boolean isFile() {
-		return true;
-	}
-
-	public boolean isLink() {
-		return false;
-	}
-	public void accept(ApfsFSVisitor v) {
+	public void accept(FSVisitor v) {
 		v.visit(this);
 
 	}

@@ -1,9 +1,9 @@
-package edu.umb.cs680.hw09.fs.util;
+package edu.umb.cs680.HW09.fs.util;
 
-import edu.umb.cs680.hw09.fs.Directory;
-import edu.umb.cs680.hw09.fs.FSVisitor;
-import edu.umb.cs680.hw09.fs.File;
-import edu.umb.cs680.hw09.fs.Link;
+import edu.umb.cs680.HW09.fs.Directory;
+import edu.umb.cs680.HW09.fs.FSVisitor;
+import edu.umb.cs680.HW09.fs.File;
+import edu.umb.cs680.HW09.fs.Link;
 
 public class CountingVisitor implements FSVisitor{
 	private int directoryNum = 0;
