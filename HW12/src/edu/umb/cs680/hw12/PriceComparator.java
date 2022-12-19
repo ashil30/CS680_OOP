@@ -4,8 +4,9 @@ import java.util.Comparator;
 
 public class PriceComparator implements Comparator<Car>{
 
-	public int compare(Car carOne, Car carTwo) {
-		return (int) (carOne.getPrice() - carTwo.getPrice());
+	@Override
+	public int compare(Car o1, Car o2) {
+		return (int) (o2.getPrice()-o1.getPrice());
 	}
 
 }
