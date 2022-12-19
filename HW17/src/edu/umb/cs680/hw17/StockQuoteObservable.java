@@ -2,7 +2,7 @@ package edu.umb.cs680.hw17;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Observable;
+
 
 public class StockQuoteObservable extends Observable{
 	
@@ -10,7 +10,7 @@ public class StockQuoteObservable extends Observable{
 	
 	void changeQuote(String t,float q) {
 		map.put(t, q);
-		setChanged();
+
 		notifyObservers(new StockEvent(t,q));
 	}
 	

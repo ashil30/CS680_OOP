@@ -1,7 +1,5 @@
 package edu.umb.cs680.hw17;
 
-import java.util.Observable;
-import java.util.Observer;
 
 public class ThreeDObserver implements Observer{
 	
