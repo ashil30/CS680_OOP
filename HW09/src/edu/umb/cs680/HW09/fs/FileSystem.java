@@ -21,7 +21,7 @@ public class FileSystem {
 		return this.directory;
 	}
 
-	public void addRootDir(Directory root) {
+	public void appendRootDir(Directory root) {
 		directory.add(root);
 	}
 
