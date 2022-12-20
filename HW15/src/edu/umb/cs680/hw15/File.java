@@ -1,4 +1,4 @@
-package edu.umb.cs680.hw13;
+package edu.umb.cs680.hw15;
 
 import java.time.LocalDateTime;
 
@@ -20,7 +20,7 @@ public class File extends FSElement{
 	public boolean isLink() {
 		return false;
 	}
-	public void accept(ApfsFSVisitor v) {
+	public void accept(FSVisitor v) {
 		v.visit(this);
 
 	}

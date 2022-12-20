@@ -1,4 +1,4 @@
-package edu.umb.cs680.hw13;
+package edu.umb.cs680.hw15;
 
 import java.time.LocalDateTime;
 
@@ -7,7 +7,7 @@ public abstract class FSElement {
 	protected String name;
 	protected int size;
 	protected LocalDateTime creationTime;
-	public abstract void accept(ApfsFSVisitor v);
+	public abstract void accept(FSVisitor v);
 	
 	public FSElement(Directory parent, String name, int size, LocalDateTime creationTime) {
 		this.parent = parent;
@@ -40,9 +40,7 @@ public abstract class FSElement {
 		return creationTime;
 	}
 	
-	public abstract boolean isDirectory(){
-		//empty as mentioned in code
-	}
+	public abstract boolean isDirectory();
 
 	public abstract boolean isFile();
 	public abstract boolean isLink();
