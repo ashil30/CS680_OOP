@@ -26,7 +26,7 @@ public class ReverseAlphabeticalComparatorTest {
 
     @Test
     public void verifyGetChildrenRoot(){
-        FSElement expected[] = {apps,home, bin };
+        FSElement expected[] = {home, bin,apps };
         Directory directory = root;
         LinkedList<FSElement> actual = directory.getChild(new ReverseAlphabeticalComparator());
         assertArrayEquals(expected, actual.toArray());
