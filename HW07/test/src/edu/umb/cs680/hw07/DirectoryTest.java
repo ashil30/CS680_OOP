@@ -13,17 +13,17 @@ class DirectoryTest {
 
 
 	Directory root = new Directory(null,"root",0, localTime);
-	Directory applications = new Directory(root,"applications",0, localTime);
+	Directory apps = new Directory(root,"apps",0, localTime);
 	Directory home = new Directory(root,"home",0, localTime);
-	Directory code = new Directory(home,"code",0, localTime);
-	Directory pics = new Directory(home,"pics",0, localTime);
+	Directory bin = new Directory(root,"bin",0, localTime);
+	Directory pictures = new Directory(home,"pictures",0, localTime);
 
-	File a = new File(applications,"a",1,localTime);
+	File a = new File(apps,"a",1,localTime);
 	File b = new File(home,"b",1,localTime);
-	File c = new File(code,"c",1,localTime);
-	File d = new File(code,"d",1,localTime);
-	File e = new File(pics,"e",1,localTime);
-	File f = new File(pics,"f",1,localTime);
+	File c = new File(bin,"c",1,localTime);
+	File d = new File(bin,"d",1,localTime);
+	File e = new File(pictures,"e",1,localTime);
+	File f = new File(pictures,"f",1,localTime);
 
 
 	private String[] dirToStringArray(Directory d) {
@@ -34,48 +34,48 @@ class DirectoryTest {
 
 	@Test
 	public void verifyDirectoryEqualityHome() {
-		String[] expected={"true","home","0",localTime.toString(),"3","5","root"};
+		String[] expected={"true","home","0",localTime.toString(),"2","3","root"};
 		assertArrayEquals(expected,dirToStringArray(home));
 	}
 	@Test
 	public void verifyDirectoryEqualityRoot() {
-		String expected[] = {"true", "root", "0", localTime.toString(), "2", "6",null};
+		String expected[] = {"true", "root", "0", localTime.toString(), "3", "6",null};
 		assertArrayEquals(expected, dirToStringArray(root));
 	}
 	@Test
-	public void verifyDirectoryEqualityApplications() {
-		String expected[] = {"true", "applications", "0", localTime.toString(), "1", "1", "root"};
-		assertArrayEquals(expected, dirToStringArray(applications));
+	public void verifyDirectoryEqualityapps() {
+		String expected[] = {"true", "apps", "0", localTime.toString(), "1", "1", "root"};
+		assertArrayEquals(expected, dirToStringArray(apps));
 	}
 
 	@Test
-	public void verifyDirectoryEqualityCode() {
-		String expected[] = {"true", "code", "0", localTime.toString(), "2", "2", "home"};
-		assertArrayEquals(expected, dirToStringArray(code));
+	public void verifyDirectoryEqualitybin() {
+		String expected[] = {"true", "bin", "0", localTime.toString(), "2", "2", "root"};
+		assertArrayEquals(expected, dirToStringArray(bin));
 	}
 
 	@Test
-	public void verifyDirectoryEqualityPics() {
-		String expected[] = {"true", "pics", "0", localTime.toString(), "2", "2", "home"};
-		assertArrayEquals(expected, dirToStringArray(pics));
+	public void verifyDirectoryEqualitypictures() {
+		String expected[] = {"true", "pictures", "0", localTime.toString(), "2", "2", "home"};
+		assertArrayEquals(expected, dirToStringArray(pictures));
 	}
 
 	@Test
 	public void DirectoryFileTest() {
-		assertTrue(applications.isDirectory());
+		assertTrue(apps.isDirectory());
 		assertFalse(a.isDirectory());
 		assertTrue(root.isDirectory());
 		assertTrue(home.isDirectory());
-		assertTrue(code.isDirectory());
+		assertTrue(bin.isDirectory());
 		assertFalse(b.isDirectory());
 	}
 
 	@Test
 	public void subFilesAndFolderNumberTest() {
-		assertEquals(2,root.countChildren());
-		assertEquals(2,code.countChildren());
-		assertEquals(1,applications.countChildren());
-		assertEquals(3,home.countChildren());
-		assertEquals(2,pics.countChildren());
+		assertEquals(3,root.countChildren());
+		assertEquals(2,bin.countChildren());
+		assertEquals(1,apps.countChildren());
+		assertEquals(2,home.countChildren());
+		assertEquals(2,pictures.countChildren());
 	}
 }

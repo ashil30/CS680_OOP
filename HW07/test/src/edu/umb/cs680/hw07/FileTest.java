@@ -15,8 +15,8 @@ public class FileTest {
 
 	Directory root = new Directory(null, "root", 0, localTime);
 
-	Directory prog = new Directory(root, "prog", 0, localTime);
-	File x = new File(prog, "x", 110, localTime);
+	Directory apps = new Directory(root, "apps", 0, localTime);
+	File x = new File(apps, "x", 110, localTime);
 
 	Directory bin = new Directory(root, "bin", 0, localTime);
 	File y = new File(bin, "y", 120, localTime);
@@ -33,7 +33,7 @@ public class FileTest {
 
 	@Test
 	public void verifyFileEqualityX() {
-		String[] expected = { "false", "x", "110", String.valueOf(x.getCreationTime()), "prog" };
+		String[] expected = { "false", "x", "110", String.valueOf(x.getCreationTime()), "apps" };
 		File actual = x;
 		assertArrayEquals(expected, fileToStringArray(actual));
 	}
