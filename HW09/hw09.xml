@@ -1,6 +1,6 @@
 <!--  To run this build script, type: 
 
-      ant -f hw09.xml
+      ant -f HW09.xml
 
       on a shell. 
 -->
@@ -33,20 +33,20 @@
 	<target name="compile" depends="resolve">
 		<javac srcdir="${src}" destdir="${bin}" includeAntRuntime="no">
 			<classpath refid="classpath"/>
-			<include name="edu/umb/cs680/hw09/**/*.java"/>
-			<!-- include name="edu/umb/cs680/hw09/**/*.java"/-->
+			<include name="edu/umb/cs680/HW09/**/*.java"/>
+			<!-- include name="edu/umb/cs680/HW09/**/*.java"/-->
 		</javac>
 		<javac srcdir="${test.src}" destdir="${test.bin}" includeAntRuntime="no"> 
 			<classpath refid="classpath"/>
-			<include name="edu/umb/cs680/hw09/*.java"/>
-			<!-- include name="edu/umb/cs680/hw09/*Test.java"/-->
+			<include name="edu/umb/cs680/HW09/**/*.java"/>
+			<!-- include name="edu/umb/cs680/HW09/*Test.java"/-->
 		</javac>
 	</target>
 
 	<target name="test" depends="compile">
 		<!--junitlauncher printSummary="yes">
 			<classpath refid="classpath" />
-			<test outputdir="test" name="edu.umb.cs680.hw09.*Test"/>
+			<test outputdir="test" name="edu.umb.cs680.HW09.*Test"/>
 			<listener type="legacy-plain" sendSysOut="true"/>
 		</junitlauncher-->
 	
@@ -54,7 +54,7 @@
 			<classpath refid="classpath" />
 			<testclasses outputdir="test">
 				<fileset dir="${test.bin}">
-					<include name="edu/umb/cs680/hw09/*Test.class"/>
+					<include name="edu/umb/cs680/HW09/**/*Test.class"/>
 				</fileset>
 				<listener type="legacy-plain" sendSysOut="true"/>
 				<!--listener type="legacy-brief" sendSysOut="true"/-->
@@ -64,8 +64,8 @@
 	
 	<target name="clean" depends="test">
 		<delete includeemptydirs="true">
-			<fileset dir="${bin}/edu/umb/cs680/hw09" includes="**/*"/>
-			<fileset dir="${test.bin}/edu/umb/cs680/hw09" includes="**/*"/>
+			<fileset dir="${bin}/edu/umb/cs680/HW09" includes="**/*"/>
+			<fileset dir="${test.bin}/edu/umb/cs680/HW09" includes="**/*"/>
 		</delete>
 	</target>
 	
