@@ -1,11 +1,11 @@
-package edu.umb.cs680.hw09.fs.util;
+package edu.umb.cs680.hw13.fs.util;
 
 import java.util.LinkedList;
 
-import edu.umb.cs680.hw09.fs.Directory;
-import edu.umb.cs680.hw09.fs.FSVisitor;
-import edu.umb.cs680.hw09.fs.File;
-import edu.umb.cs680.hw09.fs.Link;
+import edu.umb.cs680.hw13.Directory;
+import edu.umb.cs680.hw13.FSVisitor;
+import edu.umb.cs680.hw13.File;
+import edu.umb.cs680.hw13.Link;
 
 public class FileSearchVisitor implements FSVisitor{
 	private String fileName;
@@ -39,7 +39,7 @@ public class FileSearchVisitor implements FSVisitor{
 	}
 
 	public LinkedList<File> getFoundFiles() {
-		return foundFiles;
+		return this.foundFiles;
 	}
 
 }

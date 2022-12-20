@@ -19,9 +19,9 @@ public class FileSystem {
 		}
 		return instance;
 	}
-	
+
 	public LinkedList<Directory> getRootDirs(){
-		return rootDirs;
+		return this.rootDirs;
 	}
 	
 	public void appendRootDir(Directory root) {
