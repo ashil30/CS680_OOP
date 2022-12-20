@@ -1,55 +1,58 @@
 package edu.umb.cs680.hw14;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class Car {
-	private String make;
-	private String model;
-	private int mileage;
-	private int	year;
+	private String model,make;
+	private int mileage, year;
 	private float price;
-	private int dominationCount;
-	
-	public Car(String make, String model, int mileage, int year, float price) {
-		this.make = make;
-		this.model = model;
-		this.mileage = mileage;
+	private ArrayList<Car> cars;
+	private int dominationCount = 0;
+
+	public Car(String model,String make,int year,float price,int mileage) {
+
 		this.year = year;
 		this.price = price;
-	}
-
-	public String getMake() {
-		return make;
-	}
-
-	public String getModel() {
-		return model;
-	}
-
-	public int getMileage() {
-		return mileage;
-	}
-
-	public int getYear() {
-		return year;
+		this.mileage = mileage;
+		this.model = model;
+		this.make = make;
 	}
 
 	public float getPrice() {
-		return price;
+		return this.price;
+	}
+	public String getModel() {
+		return this.model;
+	}
+	public String getMake() {
+		return this.make;
+	}
+	public int getMileage() {
+		return this.mileage;
+	}
+	public int getYear() {
+		return this.year;
+	}
+	public void setCarList(ArrayList<Car> cars) {
+		this.cars=cars;
 	}
 
-	public void setDominationCount(LinkedList<Car> cars) {
-		this.dominationCount = 0;
-		for (Car car : cars) {
-			if(car.getYear() >= this.getYear() && car.getMileage() <= this.getMileage() && car.getPrice() <= this.getPrice()) {
-				if(car.getYear() > this.getYear() || car.getMileage() < this.getMileage() || car.getPrice() < this.getPrice()) {
-					dominationCount++;
-				}
+	public int getDominationCount() {
+
+		return this.dominationCount;
+	}
+
+	public void dominationCount() {
+		int count=0;
+		for(Car c: cars) {
+			if(this.price >= c.getPrice() && this.year>= c.getYear() && this.mileage>=c.getMileage()){
+				count++;
 			}
 		}
+		this.setDominationCount(count);
 	}
-	
-	public int getDominationCount() {
-		return dominationCount;
+
+	public void setDominationCount(int dominationCount) {
+		this.dominationCount = dominationCount;
 	}
 }
